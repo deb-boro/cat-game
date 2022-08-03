@@ -10,4 +10,4 @@ Cat.belongsTo(User, {
     onDelete: 'SET NULL'
 });
 
-module.exports = { Cat };
+module.exports = { Cat, User };

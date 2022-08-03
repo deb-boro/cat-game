@@ -4,15 +4,18 @@ const { Cat } = require('../models');
 const catdata = [
     {
         name: 'rocky',
-        color: 'blue'
+        color: 'blue',
+        user_id: 2
     },
     {
         name: 'bullwinkle',
-        color: 'orange'
+        color: 'orange',
+        user_id: 3
     },
     {
         name: 'garfield',
-        color: 'red'
+        color: 'red',
+        user_id: 1
     }
 ];
 

@@ -1,5 +1,4 @@
 const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 class Cat extends Model {}
@@ -20,7 +19,15 @@ Cat.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-     },{
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'user',
+                key: 'id'
+            }
+        }
+     },
+     {
         sequelize,
         timestamps: false,
         freezeTableName: true,

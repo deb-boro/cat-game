@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Cat = require('../../models');
+const { Cat } = require('../../models');
 
 // get all cats
 router.get('/', (req, res) => {
