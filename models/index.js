@@ -1,13 +1,13 @@
-const Cat = require('./Cat');
-const User = require('./User');
+const Cat = require('./Cat')
+const User = require('./User')
 
 User.hasMany(Cat, {
-    foreignKey: 'user_id'
-  });
+  foreignKey: 'user_id',
+})
 
 Cat.belongsTo(User, {
-    foreignKey: 'user_id',
-    onDelete: 'SET NULL'
-});
+  foreignKey: 'user_id',
+  onDelete: 'SET NULL',
+})
 
-module.exports = { Cat };
+module.exports = { Cat, User }
