@@ -10,6 +10,17 @@ router.get('/', (req, res) => {
       console.log(err)
       res.status(500).json(err)
     })
-})
+});
+
+router.post('/', (req, res) => {
+  Cat.create({
+    cat_name: req.body.cat_name
+  })
+  .then(dbCatData => res.json(dbCatData))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
 
 module.exports = router
