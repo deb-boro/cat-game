@@ -14,7 +14,9 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   Cat.create({
-    cat_name: req.body.cat_name
+    name: req.body.name,
+    color: req.body.color,
+    user_id: req.body.user_id
   })
   .then(dbCatData => res.json(dbCatData))
   .catch(err => {
