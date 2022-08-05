@@ -5,7 +5,7 @@ const { Cat, User } = require('../../models')
 // get all cats
 router.get('/', (req, res) => {
   Cat.findAll()
-    .then((dbUserData) => res.json(dbUserData))
+    .then((dbCatData) => res.json(dbCatData))
     .catch((err) => {
       console.log(err)
       res.status(500).json(err)
