@@ -10,8 +10,4 @@ Cat.belongsTo(User, {
   onDelete: 'SET NULL',
 })
 
-<<<<<<< HEAD
-module.exports = { Cat, User };
-=======
 module.exports = { Cat, User }
->>>>>>> main
