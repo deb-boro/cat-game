@@ -1,0 +1,23 @@
+<ol class='post-list'>
+  {{#each cats as |cat|}}
+    <li>
+      <article class='cats'>
+        <div class='name'>
+          <a href="{{cat.name}}" target='_blank'>
+            {{cat.color}}
+          </a>
+          <span>
+            ({{cat.name}})
+          </span>
+        </div>
+        <div class='meta'>
+          {{cat.name}} point(s) by {{cat.user.username}} on
+          {{cat.created_at}}
+          <a href="/cat/{{cat.id}}">
+            {{cat.color}} amazing....
+          </a>
+        </div>
+      </article>
+    </li>
+  {{/each}}
+</ol>
