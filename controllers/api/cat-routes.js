@@ -5,7 +5,7 @@ const sequelize = require('../../config/connection')
 //get all cats
 router.get('/', (req, res) => {
   Cat.findAll({
-    attributes: ['id', 'name', 'color', 'created_at'],
+    attributes: ['id', 'name', 'color'],
     include: [
       {
         model: User,
@@ -28,8 +28,7 @@ router.get('/:id', (req, res) => {
     attributes: [
      'id',
      'name',
-     'color',
-     'created_at'
+     'color'
     ],
     include: [
       {
