@@ -3,7 +3,7 @@
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <title>
-      CAT GAME
+      Cat Game
     </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
@@ -13,19 +13,19 @@
       <header>
         <h1>
           <a href='/'>
-            The Cat Game
+            Cat Game
           </a>
         </h1>
         <nav>
-          {{#if loggedIn}}
-            <button id='logout' class='btn-no-style'>
+          {{!-- {{#if loggedIn}} --}}
+          {{!-- <button id='logout' class='btn-no-style'>
               logout
-            </button>
-          {{else}}
-            <a href='/login'>
-              login
-            </a>
-          {{/if}}
+            </button> 
+          {{else}} --}}
+          <a href='/logout' id='logout'>
+            logout
+          </a>
+          {{!-- {{/if}} --}}
         </nav>
       </header>
       <main>

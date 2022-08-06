@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   //Access our User model and run .findAll() method
 
   User.findAll({
-    attributes: { include: ['password'] },
+    //attributes: { exclude: ['password'] },
   })
     .then((dbUserData) => res.json(dbUserData))
     .catch((err) => {
@@ -17,32 +17,32 @@ router.get('/', (req, res) => {
 })
 
 //GET /api/users/1
-router.get('/:id', (req, res) => {
-  User.findOne({
-    attributes: { include: ['password'] },
-    where: {
-      id: req.params.id,
-    },
-    // replace the existing `include` with this
-    include: [
-      {
-        model: Cat,
-        attributes: ['id', 'name', 'color', 'created_at'],
-      },
-    ],
-  })
-    .then((dbUserData) => {
-      if (!dbUserData) {
-        res.status(404).json({ message: 'No user found with this id' })
-        return
-      }
-      res.json(dbUserData)
-    })
-    .catch((err) => {
-      console.log(err)
-      res.status(500).json(err)
-    })
-})
+// router.get('/:id', (req, res) => {
+//   User.findOne({
+//     attributes: { exclude: ['password'] },
+//     where: {
+//       id: req.params.id,
+//     },
+//     // replace the existing `include` with this
+//     include: [
+//       {
+//         model: Cat,
+//         attributes: ['id', 'name', 'color'],
+//       },
+//     ],
+//   })
+//     .then((dbUserData) => {
+//       if (!dbUserData) {
+//         res.status(404).json({ message: 'No user found with this id' })
+//         return
+//       }
+//       res.json(dbUserData)
+//     })
+//     .catch((err) => {
+//       console.log(err)
+//       res.status(500).json(err)
+//     })
+// })
 
 //POST /api/users
 router.post('/', (req, res) => {
@@ -73,12 +73,12 @@ router.post('/login', (req, res) => {
       return
     }
 
-    const validPassword = dbUserData.checkPassword(req.body.password)
+    // const validPassword = dbUserData.checkPassword(req.body.password)
 
-    if (!validPassword) {
-      res.status(400).json({ message: 'Incorrect password!' })
-      return
-    }
+    // if (!validPassword) {
+    //   res.status(400).json({ message: 'Incorrect password!' })
+    //   return
+    // }
 
     req.session.save(() => {
       // declare session variables

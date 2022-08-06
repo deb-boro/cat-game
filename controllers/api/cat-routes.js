@@ -3,12 +3,11 @@ const { Cat, User } = require('../../models')
 //const Vote = require('../../models/Vote')
 const sequelize = require('../../config/connection')
 
-//get all users
+//get all cats /api/cats
 router.get('/', (req, res) => {
   console.log('======================')
   Cat.findAll({
-    order: [['created_at', 'DESC']],
-    attributes: ['id', 'name', 'color', 'created_at'],
+    attributes: ['id', 'name', 'color'],
     include: [
       // include the User model here:
 
@@ -17,19 +16,21 @@ router.get('/', (req, res) => {
         attributes: ['username'],
       },
     ],
-  }).then((dbCatData) =>
-    res.json(dbCatData).catch((err) => {
+  })
+    .then((dbCatData) => {
+      res.json(dbCatData)
+    })
+    .catch((err) => {
       console.log(err)
       res.status(500).json(err)
-    }),
-  )
+    })
 })
 router.get('/:id', (req, res) => {
-  Post.findOne({
+  Cat.findOne({
     where: {
       id: req.params.id,
     },
-    attributes: ['id', 'name', 'color', 'created_at'],
+    attributes: ['id', 'name', 'color'],
     include: [
       {
         model: User,
@@ -55,7 +56,9 @@ router.post('/', (req, res) => {
     color: req.body.color,
     user_id: req.body.user_id,
   })
-    .then((dbCatData) => res.json(dbCatData))
+    .then((dbCatData) => {
+      res.json(dbCatData)
+    })
     .catch((err) => {
       console.log(err)
       res.status(500).json(err)
