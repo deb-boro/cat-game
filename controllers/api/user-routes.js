@@ -2,51 +2,47 @@ const router = require('express').Router()
 const res = require('express/lib/response')
 const { User, Cat } = require('../../models')
 
-//GET /api/users
+// get all users
 router.get('/', (req, res) => {
-  //Access our User model and run .findAll() method
-
   User.findAll({
-    attributes: { include: ['password'] },
+    attributes: { exclude: ['password'] }
   })
-    .then((dbUserData) => res.json(dbUserData))
-    .catch((err) => {
-      console.log(err)
-      res.status(500).json(err)
-    })
-})
+  .then((dbUserData) => res.json(dbUserData))
+  .catch((err) => {
+    console.log(err)
+    res.status(500).json(err)
+  })
+});
 
-//GET /api/users/1
+//GET single user
 router.get('/:id', (req, res) => {
   User.findOne({
-    attributes: { include: ['password'] },
+    attributes: { exclude: ['password'] },
     where: {
-      id: req.params.id,
+      id: req.params.id
     },
-    // replace the existing `include` with this
     include: [
       {
         model: Cat,
-        attributes: ['id', 'name', 'color', 'created_at'],
-      },
-    ],
-  })
-    .then((dbUserData) => {
-      if (!dbUserData) {
-        res.status(404).json({ message: 'No user found with this id' })
-        return
+        attributes: [ 'id', 'name', 'color' ]
       }
-      res.json(dbUserData)
-    })
-    .catch((err) => {
-      console.log(err)
-      res.status(500).json(err)
-    })
-})
+    ]
+  })
+  .then(dbUserData => {
+    if (!dbUserData) {
+      res.status(404).json({ message: 'No user found with this id' });
+      return;
+    }
+    res.json(dbUserData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
 
-//POST /api/users
+//POST new user
 router.post('/', (req, res) => {
-  //expects {username: 'Lernantino', email:'Lernantino@gamil.com', password:'password1234' }
   User.create({
     username: req.body.username,
     email: req.body.email,
@@ -60,7 +56,11 @@ router.post('/', (req, res) => {
       res.json(dbUserData)
     })
   })
-})
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
 
 router.post('/login', (req, res) => {
   User.findOne({
@@ -81,7 +81,6 @@ router.post('/login', (req, res) => {
     }
 
     req.session.save(() => {
-      // declare session variables
       req.session.user_id = dbUserData.id
       req.session.username = dbUserData.username
       req.session.loggedIn = true
@@ -91,16 +90,23 @@ router.post('/login', (req, res) => {
   })
 })
 
-//PUT /api/users/1
-router.put('/:id', (req, res) => {
-  //expects {username: 'Lernantino', email:'Lernantino@gamil.com', password:'password1234' }
-  //if req.body has exact key/value pairs to match the model, you can just use 'req.body' instead
+router.post('/logout', (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end()
+    })
+  } else {
+    res.status(404).end()
+  }
+});
 
+//update existing user data
+router.put('/:id', (req, res) => {
   User.update(req.body, {
     individualHooks: true,
     where: {
-      id: req.params.id,
-    },
+      id: req.params.id
+    }
   })
     .then((dbUserData) => {
       if (!dbUserData[0]) {
@@ -115,8 +121,7 @@ router.put('/:id', (req, res) => {
     })
 })
 
-//DELETE /api/users/1
-
+//DELETE single user
 router.delete('/:id', (req, res) => {
   User.destroy({
     where: {
@@ -135,16 +140,8 @@ router.delete('/:id', (req, res) => {
       console.log(err)
       res.status(500).json(err)
     })
-})
+});
 
-router.post('/logout', (req, res) => {
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.status(204).end()
-    })
-  } else {
-    res.status(404).end()
-  }
-})
+
 
 module.exports = router
