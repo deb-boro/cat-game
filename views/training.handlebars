@@ -8,10 +8,11 @@
 </head>
 
 <style>
+
     #button {
-    position: relative;
-    float: right;
-    font-size: 30px;
+        position: relative;
+        float: right;
+        font-size: 30px;
     }
 
     header {
@@ -30,17 +31,11 @@
         font-size: 60px;
     }
 
-    #LB-Title {
-    font-size: 30px;
-    text-align: center;
-    }
-
-    #LB {
+    #progress-bar{
         margin: auto;
         width: 50%;
-        border: 5px solid black;
-        padding: 10px;
-        font-size: 20px;
+        text-align: center;
+        font-size: 30px;
     }
 </style>
 
@@ -58,12 +53,16 @@
             <a href="#">Training</a> 
         </header>
     </div>
-    
-    <div id="LB-Title"><h3>Leaderboard:</h3></div>
-    
-    <div id="LB">
-        
-        <ol>
-            <li>{{user}} | {{cat}} | {{level}}</li>
-        </ol>
+
+    <div id="progress-bar">
+        <h3>Level: {{level}} </h3>
+        <progress></progress>
     </div>
+
+    <div>
+        
+    </div>
+    
+
+</body>
+</html>
