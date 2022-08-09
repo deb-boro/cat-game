@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
       const cats = dbCatData.map((cat) => cat.get({ plain: true }))
       res.render('homepage', {
         cats,
-        //   loggedIn: req.session.loggedIn,
+        loggedIn: req.session.loggedIn,
       })
     })
     .catch((err) => {
@@ -37,9 +37,9 @@ router.get('/login', (req, res) => {
   res.render('login')
 })
 
-router.get('/logout', (req, res) => {
-  res.render('login')
-})
+// router.get('/logout', (req, res) => {
+//   res.render('login')
+// })
 
 router.get('/cat/:id', (req, res) => {
   Cat.findOne({
