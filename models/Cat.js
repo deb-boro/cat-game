@@ -16,7 +16,7 @@ class Cat extends Model {
           'id',
           'name',
           'color',
-          [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = clicks.post_id)'), 'click_count']
+          [sequelize.literal('(SELECT COUNT(*) FROM clicks WHERE cat.id = clicks.post_id)'), 'click_count']
         ],
       });
     });
