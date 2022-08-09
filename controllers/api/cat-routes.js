@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Cat, User } = require('../../models')
+const { Cat, Clicks, User } = require('../../models')
 const sequelize = require('../../config/connection')
 
 //get all cats
@@ -86,6 +86,7 @@ router.put('/:id', (req, res) => {
       res.status(500).json(err)
     })
 })
+
 router.delete('/:id', (req, res) => {
   Cat.destroy({
     where: {
@@ -103,6 +104,19 @@ router.delete('/:id', (req, res) => {
       console.log(err)
       res.status(500).json(err)
     })
+});
+
+router.put('/clicks', (req, res) => {
+  // make sure the session exists first
+  if (req.session) {
+    // pass session id along with all destructured properties on req.body
+    Cat.click({ ...req.body, user_id: req.session.user_id }, { User, Clicks })
+      .then(updatedCatData => res.json(updatedCatData))
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  }
 });
 
 module.exports = router
