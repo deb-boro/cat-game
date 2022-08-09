@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Page</title>
+</head>
+
+<style>
+
+#form {
+     margin: auto;
+        width: 50%;
+        border: 5px solid black;
+        padding: 10px;
+        font-size: 20px;
+}
+
+h3 {
+    text-align: center;
+}
+
+#button {
+    position: relative;
+    float: right;
+    font-size: 30px;
+}
+
+header {
+    position: relative;
+    float: right;
+    font-size: 30px;
+}
+
+#hero {
+    background-color: aliceblue;
+    padding: 50px;
+    border-bottom: 5px solid black;
+}
+
+h1{
+    font-size: 60px;
+}
+    
+</style>
+
+<body>
+
+<div id="hero">
+    <div id="button">
+            <button type="button">LOG OUT</button>
+    </div>
+            
+    <h1>CAT GAME</h1>
+    <header>
+            <a href="#">Home</a> |
+            <a href="#">Leaderboard</a> |
+            <a href="#">Training</a> 
+    </header>
+</div>
+
+
+<h3>It's time to create your cat!</h3>
+
+<div id="form">
+    <form>
+        <label for="catname">What's your cats name?</label>
+        <input type="text" id="catname" name="catname"><br>
+        <label for="catcolor">What color should your cat be?</label>
+        <select name="catcolor" id="catname">
+            <option value="orange">Orange</option>
+            <option value="black">Black</option>
+            <option value="grey">Grey</option>
+        </select>
+    </form>
+</div>
+
+</body>
+</html>
