@@ -40,6 +40,13 @@ router.get('/login', (req, res) => {
   res.render('login');
 })
 
+router.get('/training', (req, res) => {
+  // if (req.session.loggedIn) {
+    res.render('training');
+
+  //}
+})
+
 router.get('/cats/:id', (req, res) => {
   Cat.findOne({
     where: {
