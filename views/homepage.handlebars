@@ -1,20 +1,20 @@
 <ol class='post-list'>
   {{#each cats as |cat|}}
     <li>
-      <article class='cats'>
-        <div class='name'>
+      <article class='post'>
+        <div class='title'>
           <a href="{{cat.name}}" target='_blank'>
-            {{cat.color}}
+            {{cat.name}}
           </a>
           <span>
-            ({{cat.name}})
+            ({{name}})
           </span>
         </div>
         <div class='meta'>
-          {{cat.name}} point(s) by {{cat.user.username}} on
-          {{cat.created_at}}
-          <a href="/cat/{{cat.id}}">
-            {{cat.color}} amazing....
+          {{cat.user.username}} on
+
+          <a href="/api/cats/{{id}}">
+            cat details - {{cat.name}}, {{cat.color}}
           </a>
         </div>
       </article>

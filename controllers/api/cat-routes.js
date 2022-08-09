@@ -13,6 +13,28 @@ router.get('/', (req, res) => {
       },
     ],
   })
+    .then((dbCatData) => {
+      res.json(dbCatData)
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).json(err)
+    })
+});
+
+router.get('/:id', (req, res) => {
+  Cat.findOne({
+    where: {
+      id: req.params.id,
+    },
+    attributes: ['id', 'name', 'color'],
+    include: [
+      {
+        model: User,
+        attributes: ['username'],
+      },
+    ],
+  })
   .then((dbCatData) => res.json(dbCatData))
   .catch((err) => {
       console.log(err)
@@ -56,7 +78,9 @@ router.post('/', (req, res) => {
     color: req.body.color,
     user_id: req.body.user_id,
   })
-    .then((dbCatData) => res.json(dbCatData))
+    .then((dbCatData) => {
+      res.json(dbCatData)
+    })
     .catch((err) => {
       console.log(err)
       res.status(500).json(err)
