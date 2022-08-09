@@ -26,53 +26,51 @@ router.get('/', (req, res) => {
       console.log(err)
       res.status(500).json(err)
     })
-})
+});
 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/')
-
-    return
+    return;
   }
-  res.render('login')
+
+  res.render('login');
 })
 
-// router.get('/logout', (req, res) => {
-//   res.render('login')
-// })
-
-router.get('/cat/:id', (req, res) => {
+router.get('/cats/:id', (req, res) => {
   Cat.findOne({
     where: {
-      id: req.params.id,
+      id: req.params.id
     },
-    attributes: ['id', 'name', 'color'],
+    attributes: [
+      'id',
+      'name',
+      'color'
+    ],
     include: [
       {
         model: User,
-        attributes: ['username'],
-      },
-    ],
-  })
-    .then((dbCatData) => {
-      if (!dbCatData) {
-        res.status(404).json({ message: 'No post found with this id' })
-        return
+        attributes: ['username']
       }
+    ]
+  })
+  .then(dbCatData => {
+    if (!dbCatData) {
+      res.status(404).json({ message: 'No cat found with this id' });
+      return;
+    }
 
-      // serialize the data
-      const cat = dbCatData.get({ plain: true })
+    const cat = dbCatData.get({ plain: true });
 
-      // pass data to template
-      res.render('single-post', {
-        post,
-        loggedIn: req.session.loggedIn,
-      })
-    })
-    .catch((err) => {
-      console.log(err)
-      res.status(500).json(err)
-    })
-})
+    res.render('single-cat', {
+      cat,
+      loggedIn: req.session.loggedIn
+    });
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
 
 module.exports = router
