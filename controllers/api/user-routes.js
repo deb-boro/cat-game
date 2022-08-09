@@ -5,11 +5,7 @@ const { User, Cat } = require('../../models')
 // get all users
 router.get('/', (req, res) => {
   User.findAll({
-<<<<<<< HEAD
-    //attributes: { exclude: ['password'] },
-=======
     attributes: { exclude: ['password'] }
->>>>>>> main
   })
   .then((dbUserData) => res.json(dbUserData))
   .catch((err) => {
@@ -18,36 +14,7 @@ router.get('/', (req, res) => {
   })
 });
 
-<<<<<<< HEAD
-//GET /api/users/1
-// router.get('/:id', (req, res) => {
-//   User.findOne({
-//     attributes: { exclude: ['password'] },
-//     where: {
-//       id: req.params.id,
-//     },
-//     // replace the existing `include` with this
-//     include: [
-//       {
-//         model: Cat,
-//         attributes: ['id', 'name', 'color'],
-//       },
-//     ],
-//   })
-//     .then((dbUserData) => {
-//       if (!dbUserData) {
-//         res.status(404).json({ message: 'No user found with this id' })
-//         return
-//       }
-//       res.json(dbUserData)
-//     })
-//     .catch((err) => {
-//       console.log(err)
-//       res.status(500).json(err)
-//     })
-// })
-=======
-//GET single user
+// GET single user
 router.get('/:id', (req, res) => {
   User.findOne({
     attributes: { exclude: ['password'] },
@@ -73,7 +40,6 @@ router.get('/:id', (req, res) => {
     res.status(500).json(err);
   });
 });
->>>>>>> main
 
 //POST new user
 router.post('/', (req, res) => {
@@ -101,18 +67,19 @@ router.post('/login', (req, res) => {
     where: {
       email: req.body.email,
     },
-  }).then((dbUserData) => {
+  })
+  .then((dbUserData) => {
     if (!dbUserData) {
       res.status(400).json({ message: 'No user with that email address!' })
       return
     }
 
-    // const validPassword = dbUserData.checkPassword(req.body.password)
+    const validPassword = dbUserData.checkPassword(req.body.password)
 
-    // if (!validPassword) {
-    //   res.status(400).json({ message: 'Incorrect password!' })
-    //   return
-    // }
+    if (!validPassword) {
+      res.status(400).json({ message: 'Incorrect password!' })
+      return
+    }
 
     req.session.save(() => {
       req.session.user_id = dbUserData.id
@@ -142,17 +109,17 @@ router.put('/:id', (req, res) => {
       id: req.params.id
     }
   })
-    .then((dbUserData) => {
-      if (!dbUserData[0]) {
-        res.status(404).json({ message: 'No user found with this id' })
-        return
-      }
-      res.json(dbUserData)
-    })
-    .catch((err) => {
-      console.log(err)
-      res.status(500).json(err)
-    })
+  .then((dbUserData) => {
+    if (!dbUserData[0]) {
+      res.status(404).json({ message: 'No user found with this id' })
+      return
+    }
+    res.json(dbUserData)
+  })
+  .catch((err) => {
+    console.log(err)
+    res.status(500).json(err)
+  })
 })
 
 //DELETE single user
