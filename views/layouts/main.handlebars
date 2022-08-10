@@ -16,18 +16,20 @@
             Cat Game
           </a>
         </h1>
+        <h2>{{username}}</a></h2>
         <nav>
           {{#if loggedIn}}
             <button id='logout' class='btn-no-style'>
               logout
             </button>
+            
+            <a href="#">Home</a> |
+            <a href="#">Leaderboard</a> 
+            <a href="/training/{{username}}">Training</a> 
           {{else}}
             <a href='/login'>
               login
             </a>
-            <a href="#">Home</a> |
-            <a href="#">Leaderboard</a> |
-            <a href="/training">Training</a> 
           {{/if}}
         </nav>
       </header>

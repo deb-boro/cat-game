@@ -20,6 +20,8 @@ router.get('/', (req, res) => {
       res.render('homepage', {
         cats,
         loggedIn: req.session.loggedIn,
+        username: req.session.username
+        
       })
     })
     .catch((err) => {
@@ -37,12 +39,43 @@ router.get('/login', (req, res) => {
   res.render('login');
 })
 
-router.get('/training', (req, res) => {
-  // if (req.session.loggedIn) {
-    res.render('training');
+router.get('/training/:username', (req, res) => {
+  Cat.findOne({
+    where: {
+      username: req.params.username
+    },
+    attributes: [
+      'id',
+      'name',
+      'color'
+    ],
+    include: [
+      {
+        model: User,
+        attributes: ['username']
+      }
+    ]
+  })
+  .then(dbCatData => {
+    if (!dbCatData) {
+      res.status(404).json({ message: 'No cat found with this id' });
+      return;
+    }
 
-  //}
-})
+    const cat = dbCatData.get({ plain: true });
+
+    res.render('single-cat', {
+      cat,
+      loggedIn: req.session.loggedIn
+    });
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
+
 
 router.get('/cats/:id', (req, res) => {
   Cat.findOne({
