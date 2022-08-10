@@ -5,75 +5,47 @@ const { User, Cat } = require('../../models')
 // get all users
 router.get('/', (req, res) => {
   User.findAll({
-<<<<<<< HEAD
-    //attributes: { exclude: ['password'] },
-=======
-    attributes: { exclude: ['password'] }
->>>>>>> main
+    attributes: { exclude: ['password'] },
+    include: [
+      {
+        model: Cat,
+        attributes: ['id'],
+      },
+    ],
   })
-  .then((dbUserData) => res.json(dbUserData))
-  .catch((err) => {
-    console.log(err)
-    res.status(500).json(err)
-  })
-});
+    .then((dbUserData) => res.json(dbUserData))
+    .catch((err) => {
+      console.log(err)
+      res.status(500).json(err)
+    })
+})
 
-<<<<<<< HEAD
-//GET /api/users/1
-// router.get('/:id', (req, res) => {
-//   User.findOne({
-//     attributes: { exclude: ['password'] },
-//     where: {
-//       id: req.params.id,
-//     },
-//     // replace the existing `include` with this
-//     include: [
-//       {
-//         model: Cat,
-//         attributes: ['id', 'name', 'color'],
-//       },
-//     ],
-//   })
-//     .then((dbUserData) => {
-//       if (!dbUserData) {
-//         res.status(404).json({ message: 'No user found with this id' })
-//         return
-//       }
-//       res.json(dbUserData)
-//     })
-//     .catch((err) => {
-//       console.log(err)
-//       res.status(500).json(err)
-//     })
-// })
-=======
 //GET single user
 router.get('/:id', (req, res) => {
   User.findOne({
     attributes: { exclude: ['password'] },
     where: {
-      id: req.params.id
+      id: req.params.id,
     },
     include: [
       {
         model: Cat,
-        attributes: [ 'id', 'name', 'color' ]
+        attributes: ['id', 'name', 'color'],
+      },
+    ],
+  })
+    .then((dbUserData) => {
+      if (!dbUserData) {
+        res.status(404).json({ message: 'No user found with this id' })
+        return
       }
-    ]
-  })
-  .then(dbUserData => {
-    if (!dbUserData) {
-      res.status(404).json({ message: 'No user found with this id' });
-      return;
-    }
-    res.json(dbUserData);
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  });
-});
->>>>>>> main
+      res.json(dbUserData)
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).json(err)
+    })
+})
 
 //POST new user
 router.post('/', (req, res) => {
@@ -81,20 +53,21 @@ router.post('/', (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
-  }).then((dbUserData) => {
-    req.session.save(() => {
-      req.session.user_id = dbUserData.id
-      req.session.username = dbUserData.username
-      req.session.loggedIn = true
-
-      res.json(dbUserData)
-    })
   })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  });
-});
+    .then((dbUserData) => {
+      req.session.save(() => {
+        req.session.user_id = dbUserData.id
+        req.session.username = dbUserData.username
+        req.session.loggedIn = true
+
+        res.json(dbUserData)
+      })
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).json(err)
+    })
+})
 
 router.post('/login', (req, res) => {
   User.findOne({
@@ -132,15 +105,15 @@ router.post('/logout', (req, res) => {
   } else {
     res.status(404).end()
   }
-});
+})
 
 //update existing user data
 router.put('/:id', (req, res) => {
   User.update(req.body, {
     individualHooks: true,
     where: {
-      id: req.params.id
-    }
+      id: req.params.id,
+    },
   })
     .then((dbUserData) => {
       if (!dbUserData[0]) {
@@ -174,8 +147,6 @@ router.delete('/:id', (req, res) => {
       console.log(err)
       res.status(500).json(err)
     })
-});
-
-
+})
 
 module.exports = router
