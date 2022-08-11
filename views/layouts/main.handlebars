@@ -15,6 +15,7 @@
             Cat Game
           </a>
         </h1>
+        <h2>{{username}}</a></h2>
         <nav>
           {{#if loggedIn}}
             <a href="/api/cats/{{cat_id}}">
@@ -35,7 +36,10 @@
             |
             <button id='logout' class='btn-no-style'>logout
             </button>
+
             {{!-- <a href="/training/{{username}}">Training</a> --}}
+
+
           {{else}}
             <a href='/login'>
               login

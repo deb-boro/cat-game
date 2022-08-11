@@ -51,6 +51,7 @@ router.get('/login', (req, res) => {
   res.render('login')
 })
 
+
 // router.get('/cats/:id', (req, res) => {
 //   // Cat.findOne({
 //   //   where: {
