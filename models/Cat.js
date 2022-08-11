@@ -6,20 +6,25 @@ class Cat extends Model {
   static click(body, models) {
     return models.Clicks.create({
       user_id: body.user_id,
-      cat_id: body.cat_id
+      cat_id: body.cat_id,
     }).then(() => {
       return Cat.findOne({
         where: {
-          id: body.cat_id
+          id: body.cat_id,
         },
         attributes: [
           'id',
           'name',
           'color',
-          [sequelize.literal('(SELECT COUNT(*) FROM clicks WHERE cat.id = clicks.post_id)'), 'click_count']
+          [
+            sequelize.literal(
+              '(SELECT COUNT(*) FROM clicks WHERE cat.id = clicks.cat_id)',
+            ),
+            'click_count',
+          ],
         ],
-      });
-    });
+      })
+    })
   }
 }
 

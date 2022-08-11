@@ -12,6 +12,7 @@ Clicks.init(
     },
     user_id: {
       type: DataTypes.INTEGER,
+
       allowNull: false,
       references: {
         model: 'user',
@@ -36,4 +37,4 @@ Clicks.init(
   },
 )
 
-module.exports = Clicks;
+module.exports = Clicks
