@@ -53,10 +53,10 @@ router.get('/:id', (req, res) => {
     }
     res.json(dbCatData);
 
-    // res.render('training', {
-    //   text: 'CAT click will happen here',
-    //   loggedIn: req.session.loggedIn,
-    // })
+    res.render('training', {
+      text: 'CAT click will happen here',
+      loggedIn: req.session.loggedIn,
+    })
   })
   .catch((err) => {
     console.log(err)
