@@ -51,6 +51,15 @@ router.get('/login', (req, res) => {
   res.render('login')
 })
 
+router.get('/leaderboard', (req, res) => {
+  if (req.session.loggedIn) {
+    res.render('leader-board')
+    return
+  }
+
+
+})
+
 // router.get('/cats/:id', (req, res) => {
 //   // Cat.findOne({
 //   //   where: {

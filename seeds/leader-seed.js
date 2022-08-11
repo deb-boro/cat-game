@@ -7,6 +7,10 @@ const clickdata = [
     cat_id: 3
   },
   {
+    user_id: 1,
+    cat_id: 3
+  },
+  {
     user_id: 2,
     cat_id: 2
   },

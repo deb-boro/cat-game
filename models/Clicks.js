@@ -12,8 +12,8 @@ Clicks.init(
     },
     user_id: {
       type: DataTypes.INTEGER,
-
       allowNull: false,
+      unique: false,
       references: {
         model: 'user',
         key: 'id'
@@ -22,6 +22,7 @@ Clicks.init(
     cat_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      unique: false,
       references: {
           model: 'cat',
           key: 'id'
