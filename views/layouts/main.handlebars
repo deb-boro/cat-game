@@ -7,7 +7,6 @@
     </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
-
   <body>
     <div class='wrapper'>
       <header>
@@ -19,13 +18,28 @@
         <h2>{{username}}</a></h2>
         <nav>
           {{#if loggedIn}}
-            <button id='logout' class='btn-no-style'>
-              logout
+            <a href="/api/cats/{{cat_id}}">
+              My Cat <img src="../../public/image/cute-white-cat-cartoon-vector-illustration_42750-808.webp"></img>
+            </a>
+            |
+            <a href='#'>
+              Welcome {{username}}
+            </a>
+            |
+            <a href='#'>
+              Home
+            </a>
+            |
+            <a href='#'>
+              Leaderboard
+            </a>
+            |
+            <button id='logout' class='btn-no-style'>logout
             </button>
-            
-            <a href="#">Home</a> |
-            <a href="#">Leaderboard</a> 
-            <a href="/training/{{username}}">Training</a> 
+
+            {{!-- <a href="/training/{{username}}">Training</a> --}}
+
+
           {{else}}
             <a href='/login'>
               login
