@@ -13,19 +13,22 @@ Clicks.init(
       autoIncrement: true,
     },
     user_id: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'user',
-          key: 'id'
-        }
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id',
       },
+    },
     cat_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: 'cat',
-            key: 'id'
-        }
-    }
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'cat',
+        key: 'id',
+      },
+    },
+    // click_count: {
+    //   type: DataTypes.INTEGER,
+    // },
   },
   {
     sequelize,
@@ -36,4 +39,4 @@ Clicks.init(
   },
 )
 
-module.exports = Clicks;
+module.exports = Clicks

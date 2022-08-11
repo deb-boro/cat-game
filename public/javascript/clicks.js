@@ -1,40 +1,54 @@
-const cat_id = require('cat_id');
+// const cat_id = require('cat_id')
 
-console.log(cat_id)
-
-
-let clicks = 0;
+let clickArr = []
+let clicks = 0
 
 async function catClickHandler(event) {
-    event.preventDefault();
-  
-   
+  event.preventDefault()
+  clicks = clicks + 1
+  clickArr
+  console.log(`clicked ${clicks} times`)
 
-    
+  const response = await fetch('/api/cats/clicks', {
+    method: 'put',
+    body: JSON.stringify({
+      clicks,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
 
-    clicks = clicks + 1;
-
-  
-
-    console.log("Cat clicked " + clicks + " times.");
-
-
-
-    const response = await fetch('/api/cats/clicks', {
-        method: 'PUT',
-        body: JSON.stringify({
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      
-      if (response.ok) {
-        document.location.reload();
-      } else {
-        alert(response.statusText);
-      }
+  if (response.ok) {
+    document.location.reload()
+  } else {
+    alert(response.statusText)
   }
-  
+}
 
-  document.querySelector('#cat-button').addEventListener('click', catClickHandler);
+// async function catClick() {
+//   let score = await catClickHandler()
+//   console.log('Cat clicked ' + clicks + ' times.')
+//   const totalClicks = document.querySelector('#totalClicks')
+//   totalClicks.textContent('Total Clicks: ' + score)
+
+//   const response = await fetch('/api/cats/clicks', {
+//     method: 'PUT',
+//     body: JSON.stringify({
+//       score,
+//     }),
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   })
+
+//   if (response.ok) {
+//     document.location.reload()
+//   } else {
+//     alert(response.statusText)
+//   }
+// }
+// catClick()
+const totalClicks = document.querySelector('#totalClicks')
+totalClicks.textContent = 'Total Clicks: ' + clicks
+document.querySelector('#cat-button').addEventListener('click', catClickHandler)

@@ -129,18 +129,17 @@ router.delete('/:id', (req, res) => {
       res.status(500).json(err)
     })
 })
-
 router.put('/clicks', (req, res) => {
   // make sure the session exists first
   if (req.session) {
     // pass session id along with all destructured properties on req.body
     Cat.click({ ...req.body, user_id: req.session.user_id }, { User, Clicks })
-      .then(updatedCatData => res.json(updatedCatData))
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
+      .then((updatedCatData) => res.json(updatedCatData))
+      .catch((err) => {
+        console.log(err)
+        res.status(500).json(err)
+      })
   }
-});
+})
 
 module.exports = router
