@@ -3,7 +3,7 @@
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <title>
-      Cat Game
+      CAT GAME
     </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
@@ -12,10 +12,11 @@
       <header>
         <h1>
           <a href='/'>
-            Cat Game
+            CAT GAME
           </a>
         </h1>
         <h2>Welcome, {{username}}!</h2>
+
         <nav>
           {{#if loggedIn}}
             <a href="/api/cats/{{cat_id}}">
@@ -26,12 +27,11 @@
               Leaderboard
             </a>
             |
-            <button id='logout' class='btn-no-style'>logout
+            <button id='logout' class='btn-no-style'>
+              logout
             </button>
 
             {{!-- <a href="/training/{{username}}">Training</a> --}}
-
-
           {{else}}
             <a href='/login'>
               login

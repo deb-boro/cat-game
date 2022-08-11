@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const { Cat, Clicks, User } = require('../../models')
-const sequelize = require('../../config/connection');
+const sequelize = require('../../config/connection')
 // const { ValidationError } = require('sequelize/types');
 
 
@@ -9,10 +9,15 @@ const sequelize = require('../../config/connection');
 router.get('/', (req, res) => {
   Cat.findAll({
     attributes: [
-      'id', 
-      'name', 
+      'id',
+      'name',
       'color',
-      [sequelize.literal('(SELECT COUNT(*) FROM clicks WHERE cat.id = clicks.cat_id)'), 'click_count']
+      [
+        sequelize.literal(
+          '(SELECT COUNT(*) FROM clicks WHERE cat.id = clicks.cat_id)',
+        ),
+        'click_count',
+      ],
     ],
     include: [
       {
@@ -51,10 +56,15 @@ router.get('/:id', (req, res) => {
       id: req.params.id,
     },
     attributes: [
-      'id', 
-      'name', 
+      'id',
+      'name',
       'color',
-      [sequelize.literal('(SELECT COUNT(*) FROM clicks WHERE cat.id = clicks.cat_id)'), 'click_count']
+      [
+        sequelize.literal(
+          '(SELECT COUNT(*) FROM clicks WHERE cat.id = clicks.cat_id)',
+        ),
+        'click_count',
+      ],
     ],
     include: [
       {
@@ -80,6 +90,7 @@ router.get('/:id', (req, res) => {
     res.status(500).json(err)
   })
 });
+
 
 router.post('/', (req, res) => {
   Cat.create({
@@ -113,26 +124,26 @@ router.put('/:id', (req, res) => {
   Cat.update(
     {
       name: req.body.name,
-      color: req.body.color
+      color: req.body.color,
     },
     {
       where: {
-        id: req.params.id
-      }
-    }
+        id: req.params.id,
+      },
+    },
   )
-    .then(dbPostData => {
+    .then((dbPostData) => {
       if (!dbPostData) {
-        res.status(404).json({ message: 'No post found with this id' });
-        return;
+        res.status(404).json({ message: 'No post found with this id' })
+        return
       }
-      res.json(dbPostData);
+      res.json(dbPostData)
     })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+    .catch((err) => {
+      console.log(err)
+      res.status(500).json(err)
+    })
+})
 
 router.delete('/:id', (req, res) => {
   Cat.destroy({
@@ -152,6 +163,5 @@ router.delete('/:id', (req, res) => {
       res.status(500).json(err)
     })
 })
-
 
 module.exports = router

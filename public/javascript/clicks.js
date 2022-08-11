@@ -34,16 +34,20 @@ async function catClickHandler(event) {
   }
 }
 
-// async function catClick() {
-//   let score = await catClickHandler()
-//   console.log('Cat clicked ' + clicks + ' times.')
+// const clickDisplay = (arr) => {
 //   const totalClicks = document.querySelector('#totalClicks')
-//   totalClicks.textContent('Total Clicks: ' + score)
+//   totalClicks.textContent = 'Total Clicks: ' + arr[0]
+// }
 
+// async function catClickHandler(event) {
+//   event.preventDefault()
+//   clicks = clicks + 1
+//   clickArr.splice(0, 1, gclicks)
+//   console.log(`clicked ${clicks} times`)
 //   const response = await fetch('/api/cats/clicks', {
-//     method: 'PUT',
+//     method: 'put',
 //     body: JSON.stringify({
-//       score,
+//       clicks,
 //     }),
 //     headers: {
 //       'Content-Type': 'application/json',
