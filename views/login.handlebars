@@ -8,32 +8,31 @@
 .topheader{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 100px;
-    background-color: #232836;
     color: aliceblue;
     text-align: center;
 }
 .container{
-    height: 100vh;
+    height: 80vh;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:#232836 ;
     column-gap: 30px;
 }
 .form{
     position: absolute;
     max-width: 430px;
     width: 100%;
-    padding: 30px;
+    padding: 40px;
     border-radius: 6px;
     background: #FFF;
     text-align: center;
+    border: 3px solid black;
 }
+
 header{
     font-size: 28px;
     font-weight: 600;
-    color: #232836;
     text-align: center;
 }
 form{
@@ -64,61 +63,66 @@ form{
 .field input:focus{
     border-bottom-width: 2px;
 }
+
 .field button{
     color: #fff;
-    background-color: #0171D3;
     transition: all 0.3s ease;
     cursor: pointer;
 }
 .field button:hover{
-    background-color: #016DCB;
 }
+
+
 </style>
 
+<body>
+  <div id="loginpage">
+    <section class="container forms">
+      <div class="form login">
+        <div class="form-content">
+          <header class="login">Login</header>
 
-
-<form class='login-form'>
-  <div>
-    <label for='email-login'>
-      email:
-    </label>
-    <input type='text' id='email-login' />
-  </div>
-  <div>
-    <label for='password-login'>
-      password:
-    </label>
-    <input type='password' id='password-login' />
-  </div>
-  <div>
-    <button type='submit'>
-      login
-    </button>
-  </div>
-</form>
-<form class='signup-form'>
-  <div>
-    <label for='username-signup'>
-      username:
-    </label>
-    <input type='text' id='username-signup' />
-  </div>
-  <div>
-    <label for='email-signup'>
-      email:
-    </label>
-    <input type='text' id='email-signup' />
-  </div>
-  <div>
-    <label for='password-signup'>
-      password:
-    </label>
-    <input type='password' id='password-signup' />
-  </div>
-  <div>
-    <button type='submit'>
-      signup
-    </button>
-  </div>
-</form>
+    <form class='login-form'>
+    <div>
+      <label for='email-login' placeholder="email">
+      </label>
+      <input placeholder='email' type='email' id='email-login' />
+    </div>
+    <div>
+      <label for='password-login' placeholder="password">
+      </label>
+      <input placeholder='password' type='password' id='password-login' />
+    </div>
+    <div>
+      <button type='submit'>
+            login
+      </button>
+    </div>
+  </form>
+  <!--signup-->
+  <form class='signup-form'>
+    <header class="signup">Signup</header>
+    <div>
+      <label for='username-signup'>
+      </label>
+      <input placeholder="username" type='text' id='username-signup' />
+    </div>
+    <div>
+      <label for='email-signup'>
+      </label>
+      <input placeholder='email' type='text' id='email-signup' />
+    </div>
+    <div>
+      <label for='password-signup'>
+      </label>
+      <input placeholder="password" type='password' id='password-signup' />
+    </div>
+    <div>
+      <button type='submit'>
+        signup
+      </button>
+    </div>
+  </form>
+</div>
+</body>
 <script src='/javascript/login.js'></script>

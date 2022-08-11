@@ -1,28 +1,47 @@
+<style>
+  #LB{
+    margin: auto;
+    width: 100%;
+    font-size: 20px;
+  }
 
+  h3{
+    font-size: 30px;
+    text-align: center;
+  }
 
-<ul class=‘post-list’>
-  {{#each cats as |cat|}}
-    <li>
-      <article class=‘post’>
-        <div class=‘title’>
-          <a href=“{{cat.name}}” target=‘_blank’>
-            USER NAME - {{cat.user.username}} |
-            CAT COLOR - {{
-              cat.color
-            }} | CAT NAME- {{cat.name}}
-            | CLICKS - {{cat.click_count}} 
-          </a>
-          <span>
-            ({{name}})
-          </span>
-        </div>
-        {{!-- <div class=‘meta’>
-          {{cat.user.username}} on
-          <a href=“/api/cats/{{id}}“>
-            cat details - {{cat.name}}, {{cat.color}}
-          </a>
-        </div> --}}
-      </article>
-    </li>
-  {{/each}}
-</ul>
+  #LB-Border{
+    border: 5px solid black;
+    padding-bottom: 600px;
+  }
+</style>
+
+<div id="LB-Border">
+  <h3>Leaderboard:</h3>
+  <ul class=‘post-list’>
+    {{#each cats as |cat|}}
+      <li>
+        <article class=‘post’>
+          <div id="LB" class=‘title’>
+            <a href=“{{cat.name}}” target=‘_blank’>
+              USER NAME - {{cat.user.username}} |
+              CAT COLOR - {{
+                cat.color
+              }} | CAT NAME- {{cat.name}}
+              | CLICKS - {{cat.click_count}} 
+            </a>
+            <span>
+              ({{name}})
+            </span>
+          </div>
+          {{!-- <div class=‘meta’>
+            {{cat.user.username}} on
+            <a href=“/api/cats/{{id}}“>
+              cat details - {{cat.name}}, {{cat.color}}
+            </a>
+          </div> --}}
+        </article>
+      </li>
+    {{/each}}
+  </ul>
+</div>
