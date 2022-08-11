@@ -1,5 +1,6 @@
 const seedUsers = require('./users')
 const seedCats = require('./cat-profiles')
+const seedLeaderboard = require('./leader-seed')
 
 const sequelize = require('../config/connection')
 
@@ -11,6 +12,8 @@ const seedAll = async () => {
   console.log('--------------')
   // await catfunction();
   await seedCats()
+  console.log('--------------')
+  await seedLeaderboard()
   console.log('--------------')
 
   process.exit(0)

@@ -75,8 +75,6 @@ router.get('/training/:username', (req, res) => {
   });
 });
 
-
-
 router.get('/cats/:id', (req, res) => {
   Cat.findOne({
     where: {
