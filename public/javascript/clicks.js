@@ -1,12 +1,28 @@
+const cat_id = require('cat_id');
+
+console.log(cat_id)
+
+
+let clicks = 0;
+
 async function catClickHandler(event) {
     event.preventDefault();
   
-    console.log('button clicked');
+   
+
+    
+
+    clicks = clicks + 1;
+
+  
+
+    console.log("Cat clicked " + clicks + " times.");
+
+
 
     const response = await fetch('/api/cats/clicks', {
         method: 'PUT',
         body: JSON.stringify({
-          cat_id: id
         }),
         headers: {
           'Content-Type': 'application/json'
