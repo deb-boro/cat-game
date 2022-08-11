@@ -4,21 +4,22 @@
       <article class='post'>
         <div class='title'>
           <a href="{{cat.name}}" target='_blank'>
-            {{cat.name}}
+            USER NAME - {{cat.user.username}} |
+            CAT COLOR - {{
+              cat.color
+            }} | CAT NAME- {{cat.name}}
           </a>
           <span>
             ({{name}})
           </span>
         </div>
-        <div class='meta'>
+        {{!-- <div class='meta'>
           {{cat.user.username}} on
-
           <a href="/api/cats/{{id}}">
             cat details - {{cat.name}}, {{cat.color}}
           </a>
-        </div>
+        </div> --}}
       </article>
     </li>
   {{/each}}
 </ol>
-

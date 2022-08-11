@@ -22,8 +22,23 @@ router.get('/', (req, res) => {
     ],
   })
     .then((dbCatData) => {
-      res.json(dbCatData)
+
+      const catID = []
+      for (let i = 0; i < dbCatData.length; i++) {
+        if (dbCatData[i].user.username === req.session.username) {
+          // console.log('id is :' + (i + 1))
+          catID.push(i + 1)
+          break
+        }
+      }
+      const cats = dbCatData.map((cat) => cat.get({ plain: true }))
+      res.render('leaderboard', {
+        cats,
+        loggedIn: req.session.loggedIn,
+        username: req.session.username,
+        cat_id: catID[0],
     })
+  })
     .catch((err) => {
       console.log(err)
       res.status(500).json(err)
@@ -57,6 +72,7 @@ router.get('/:id', (req, res) => {
 
     res.render('training', {
       loggedIn: req.session.loggedIn,
+      username: req.session.username,
     })
   })
   .catch((err) => {

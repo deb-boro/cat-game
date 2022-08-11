@@ -76,49 +76,29 @@ form{
 </style>
 
 
-
-<form class='login-form'>
-  <div>
-    <label for='email-login'>
-      email:
-    </label>
-    <input type='text' id='email-login' />
-  </div>
-  <div>
-    <label for='password-login'>
-      password:
-    </label>
-    <input type='password' id='password-login' />
-  </div>
-  <div>
-    <button type='submit'>
-      login
-    </button>
-  </div>
-</form>
-<form class='signup-form'>
-  <div>
-    <label for='username-signup'>
-      username:
-    </label>
-    <input type='text' id='username-signup' />
-  </div>
-  <div>
-    <label for='email-signup'>
-      email:
-    </label>
-    <input type='text' id='email-signup' />
-  </div>
-  <div>
-    <label for='password-signup'>
-      password:
-    </label>
-    <input type='password' id='password-signup' />
-  </div>
-  <div>
-    <button type='submit'>
-      signup
-    </button>
-  </div>
-</form>
-<script src='/javascript/login.js'></script>
+<ul class=‘post-list’>
+  {{#each cats as |cat|}}
+    <li>
+      <article class=‘post’>
+        <div class=‘title’>
+          <a href=“{{cat.name}}” target=‘_blank’>
+            USER NAME - {{cat.user.username}} |
+            CAT COLOR - {{
+              cat.color
+            }} | CAT NAME- {{cat.name}}
+            | CLICKS - {{cat.click_count}} 
+          </a>
+          <span>
+            ({{name}})
+          </span>
+        </div>
+        {{!-- <div class=‘meta’>
+          {{cat.user.username}} on
+          <a href=“/api/cats/{{id}}“>
+            cat details - {{cat.name}}, {{cat.color}}
+          </a>
+        </div> --}}
+      </article>
+    </li>
+  {{/each}}
+</ul>

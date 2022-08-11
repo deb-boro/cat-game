@@ -11,18 +11,6 @@ Cat.belongsTo(User, {
   onDelete: 'SET NULL',
 });
 
-User.belongsToMany(Cat, {
-  through: Clicks,
-  as: 'clicked_cats',
-  foreignKey: 'user_id'
-});
-
-Cat.belongsToMany(User, {
-  through: Clicks,
-  as: 'clicked_cats',
-  foreignKey: 'cat_id'
-});
-
 Clicks.belongsTo(User, {
   foreignKey: 'user_id'
 });

@@ -15,22 +15,14 @@
             Cat Game
           </a>
         </h1>
-        <h2>{{username}}</a></h2>
+        <h2>Welcome, {{username}}!</h2>
         <nav>
           {{#if loggedIn}}
             <a href="/api/cats/{{cat_id}}">
               My Cat
             </a>
             |
-            <a href='#'>
-              Welcome {{username}}
-            </a>
-            |
-            <a href='#'>
-              Home
-            </a>
-            |
-            <a href='#'>
+            <a href='/api/cats/'>
               Leaderboard
             </a>
             |
