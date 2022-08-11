@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const res = require('express/lib/response')
-const { User, Cat } = require('../../models')
+const { User, Cat, Clicks } = require('../../models')
 
 // get all users
 router.get('/', (req, res) => {
@@ -31,6 +31,12 @@ router.get('/:id', (req, res) => {
         model: Cat,
         attributes: ['id', 'name', 'color'],
       },
+      {
+        model: Cat,
+        attributes: ['name'],
+        through: Clicks,
+        as: 'clicked_cats'
+      }
     ],
   })
 

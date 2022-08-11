@@ -72,6 +72,7 @@ router.get('/login', (req, res) => {
 
 //   //     const cat = dbCatData.get({ plain: true })
 
+
 //   res.render('training', {
 //     text: 'CAT click will happen here',
 //     loggedIn: req.session.loggedIn,
@@ -83,4 +84,6 @@ router.get('/login', (req, res) => {
 // })
 //})
 
-module.exports = router
+
+module.exports = router;
+
