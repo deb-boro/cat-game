@@ -20,7 +20,27 @@ router.get('/', (req, res) => {
       console.log(err)
       res.status(500).json(err)
     })
-});
+})
+
+// router.get('/:id', (req, res) => {
+//   Cat.findOne({
+//     where: {
+//       id: req.params.id,
+//     },
+//     attributes: ['id', 'name', 'color'],
+//     include: [
+//       {
+//         model: User,
+//         attributes: ['username'],
+//       },
+//     ],
+//   })
+//     .then((dbCatData) => res.json(dbCatData))
+//     .catch((err) => {
+//       console.log(err)
+//       res.status(500).json(err)
+//     })
+// })
 
 router.get('/:id', (req, res) => {
   Cat.findOne({
@@ -35,42 +55,22 @@ router.get('/:id', (req, res) => {
       },
     ],
   })
-  .then((dbCatData) => res.json(dbCatData))
-  .catch((err) => {
-      console.log(err)
-      res.status(500).json(err)
-    })
-});
-
-router.get('/:id', (req, res) => {
-  Cat.findOne({
-    where: {
-      id: req.params.id,
-    },
-    attributes: [
-     'id',
-     'name',
-     'color'
-    ],
-    include: [
-      {
-        model: User,
-        attributes: ['username']
-      }
-    ]
-  })
     .then((dbCatData) => {
       if (!dbCatData) {
         res.status(404).json({ message: 'No cat found with this id' })
         return
       }
-      res.json(dbCatData)
+
+      res.render('training', {
+        text: 'CAT click will happen here',
+        loggedIn: req.session.loggedIn,
+      })
     })
     .catch((err) => {
       console.log(err)
       res.status(500).json(err)
     })
-});
+})
 
 router.post('/', (req, res) => {
   Cat.create({
@@ -128,7 +128,7 @@ router.delete('/:id', (req, res) => {
       console.log(err)
       res.status(500).json(err)
     })
-});
+})
 
 router.put('/clicks', (req, res) => {
   // make sure the session exists first
