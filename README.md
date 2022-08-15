@@ -23,6 +23,8 @@ Create a web game where you can click to "train" your cat. The higher the score,
 
 NOTE: Welcome message in screenshots only shows the name of the user logged in at the time. If another user was logged in the welcome message would show their username instead.
 
+Link: https://radiant-island-77079.herokuapp.com/
+
 Landing Page:
 
 <img src="./public/image/landing_page_screenshot.png">
@@ -32,9 +34,6 @@ Landing Page:
 Landing Page after successful login:
 
 <img src="./public/image/post_login_landing_page.png">
-
-
-
 
 ## Contributors
 
