@@ -17,7 +17,7 @@ Create a web game where you can click to "train" your cat. The higher the score,
     * dotenv
     * mysql2
     * bcrypt
-    * jshint
+    * jshint (new, undiscussed package installed per project requirements)
 
 ## Webpage
 
