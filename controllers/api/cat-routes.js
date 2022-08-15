@@ -107,6 +107,28 @@ router.post('/', (req, res) => {
     })
 })
 
+router.post('/create-cat', (req, res) => {
+  Cat.create({
+    name: req.body.name,
+    color: req.body.color,
+    user_id: req.session.user_id
+  })
+  .then((dbCatData) => {
+    req.session.save(() => {
+      req.session.cat_id = dbCatData.id
+      req.session.name = dbCatData.name
+      req.session.color = dbCatData.color
+      req.session.loggedIn = true
+
+      res.json(dbCatData)
+    })
+  })
+  .catch((err) => {
+    console.log(err)
+    res.status(500).json(err)
+  })
+});
+
 router.put('/clicks', (req, res) => {
   console.log(req.session)
   if (req.session) {

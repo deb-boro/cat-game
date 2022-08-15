@@ -1,0 +1,102 @@
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+.topheader{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 100px;
+    color: aliceblue;
+    text-align: center;
+}
+.container{
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 30px;
+}
+.form{
+    position: absolute;
+    max-width: 430px;
+    width: 100%;
+    padding: 40px;
+    border-radius: 6px;
+    background: #FFF;
+    text-align: center;
+    border: 3px solid black;
+}
+
+header{
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+}
+form{
+    margin-top: 30px;
+    text-align: center;
+}
+.form .field{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 6px;
+}
+.field input,
+.field button{
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 6px;
+}
+.field input{
+    outline: none;
+    padding: 0 15px;
+    border: 1px solid#CACACA;
+}
+.field input:focus{
+    border-bottom-width: 2px;
+}
+
+.field button{
+    color: #fff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.field button:hover{
+}
+
+
+</style>
+
+<body>
+  <div id="cat-creator">
+    <section class="container forms">
+      <div class="form login">
+        <div class="form-content">
+          <header class="create">Create A Cat</header>
+
+    <form class='creation-form'>
+    <div>
+      <label for='cat-name' placeholder="name"></label>
+      <input placeholder='name' type="text" id='cat-name' />
+    </div>
+    <div>
+      <label for='cat-color' placeholder="color"></label>
+      <input placeholder='color' type="text" id='cat-color' />
+    </div>
+    <div>
+      <button type='submit'>
+            submit
+      </button>
+    </div>
+  </form>
+</div>
+</body>
+<script src='/javascript/cat.js'></script>

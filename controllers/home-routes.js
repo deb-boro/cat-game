@@ -60,6 +60,12 @@ router.get('/leaderboard', (req, res) => {
 
 })
 
+router.get('/cats/create-cat', (req, res) => {
+  if (req.session.loggedIn) {
+    res.render('cat-creation')
+  }
+})
+
 // router.get('/cats/:id', (req, res) => {
 //   // Cat.findOne({
 //   //   where: {
